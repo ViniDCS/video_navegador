@@ -1,0 +1,71 @@
+import processing.video.*;
+
+// Variáveis
+Movie mov;
+float vell = 1;
+float velo = -1;
+int lastMillis = 0;
+boolean f = false;
+boolean v = false;
+
+void setup() {
+  background(0);
+  //Cria uma janela de tamanho ... por ...
+  size(1024, 768);
+  //Chamar a variavel mov = movie  
+  mov = new Movie(this, "pi3.mov");
+  mov.loop();
+  mov.stop();
+}
+
+void movieEvent(Movie movie) {
+  mov.read();
+}
+
+void draw() {
+  image(mov, 0, 96, 1024, 576);
+  if(millis()-lastMillis>2000) {
+    vell = vell*0.5;
+    mov.speed(vell);
+    lastMillis=millis();
+  }
+}
+
+void keyPressed() {
+  //for (int lastMillis = 0;(millis()-lastMillis>2000)){
+    if ((key == 'f') || (!(key == 'v'))){
+      vell = 1;  
+      mov.speed(vell);
+      mov.loop();
+      lastMillis = millis();
+      print("x");
+    } 
+    /*if ((key == 'v') || (!(key == 'f'))) {
+    vell = -1;  
+    mov.speed(velo);
+    mov.loop();
+    lastMillis = millis();
+    print("y");
+    }*/
+}
+
+/*void keyPressed() {
+  if (key == 'v') {
+    vell = -1;  
+    mov.speed(velo);
+    mov.loop();
+    lastMillis = millis();
+    print("y");
+    } else if (!(key == 'f')) {
+    vell = 1;  
+    mov.speed(vell);
+    mov.loop();
+    lastMillis = millis();
+    print("x");
+  }
+}*/
+
+//Desenho no modo de tela cheia
+boolean sketchFullScreen() {
+  return true;
+}

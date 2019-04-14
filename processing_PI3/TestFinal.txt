@@ -1,0 +1,44 @@
+import processing.video.*;
+
+Movie mov;
+float vell = 1;
+int lastMillis = 0;
+
+void setup() {
+  size(640, 360);
+  background(0);
+  mov = new Movie(this, "transit.mov");
+  mov.loop();
+  mov.stop();
+  //mov.speed(0.1);
+}
+
+void movieEvent(Movie movie) {
+  mov.read();
+}
+
+void draw() {
+  image(mov, 0, 0);
+  if(millis()-lastMillis>2000)
+  {
+    vell = vell*0.5;
+    mov.speed(vell);
+    lastMillis=millis();
+  }
+}
+
+void keyPressed() {
+  if (key == 'f') {
+    vell = 1;  
+    mov.speed(vell);
+      mov.loop();
+      lastMillis = millis();
+      print("x");
+      //text(nfc(newSpeed, 2) + "X", 10, 30);
+  }
+}
+
+
+boolean sketchFullScreen() {
+  return true;
+}

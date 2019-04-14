@@ -1,0 +1,10 @@
+PFont fonte;
+fonte = createFont("Georgia", 32);
+
+//o que esses números fazem?
+size(200, 200);
+background(255);
+
+textFont(fonte, 32);
+fill(255, 0, 100);
+text("Olá, Mundo", 30, 50);
